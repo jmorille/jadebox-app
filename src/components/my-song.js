@@ -28,6 +28,10 @@ class MySong extends connect(store)(PageViewElement) {
       ${SharedStyles}
       <section>
         <h3>Chansons</h3>
+        <audio controls autoplay id="player" preload="metadata" style=" width:600px;">
+	       <source src="${this._playing.url}" type="audio/mpeg">
+	       Your browser does not support the audio element.
+        </audio>
         <song-products></song-products>
  
 
@@ -36,8 +40,15 @@ class MySong extends connect(store)(PageViewElement) {
     `;
   }
 
+    constructor(){
+        super();
+        // Initialize property here.
+        this._playing= "/data/noelEstCommeUnRythmeJazz.mp3";
+    }
+
   static get properties() { return {
     // This is the data from the store.
+    _playing: { type: Object },
     _error: { type: String }
   }}
 
@@ -45,9 +56,18 @@ class MySong extends connect(store)(PageViewElement) {
     store.dispatch(playSong());
   }
 
+  _playerPlay(that) {
+      const player =  that.shadowRoot.querySelector("#player");
+      if (player) {
+        player.load();
+//        player.play();
+      }
+  }
 
   // This is called every time something is updated in the store.
   stateChanged(state) {
+    this._playing = state.song.playing.url ? state.song.playing: { url: '' };
+    this._playerPlay(this);
   }
 }
 
