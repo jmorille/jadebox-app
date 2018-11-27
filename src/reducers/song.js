@@ -2,7 +2,6 @@ import {
     GET_SONGS,
     PLAY_SONG
 } from '../actions/song.js';
-import {ADD_TO_CART, CHECKOUT_FAILURE, CHECKOUT_SUCCESS, GET_PRODUCTS, REMOVE_FROM_CART} from "../actions/shop";
 
 
 const INITIAL_STATE = {
@@ -21,9 +20,13 @@ const song = (state = INITIAL_STATE, action) => {
             };
         case PLAY_SONG:
             return {
-                ...state
+                ...state,
+                playing: action.song
             };
         default:
             return state;
     }
 };
+
+
+export default song;

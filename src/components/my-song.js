@@ -9,16 +9,15 @@ import { store } from '../store.js';
 
 // These are the actions needed by this element.
 import { getAllSongs, playSong } from '../actions/song.js';
-import { increment, decrement } from '../actions/counter.js';
 
 // We are lazy loading its reducer.
-import counter from '../reducers/counter.js';
+import song from '../reducers/song.js';
 store.addReducers({
-  counter
+  song
 });
 
 // These are the elements needed by this element.
-import './counter-element.js';
+import './song-products.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -28,40 +27,27 @@ class MySong extends connect(store)(PageViewElement) {
     return html`
       ${SharedStyles}
       <section>
-        <h2>Chanson</h2>
-        <div class="circle">${this._value}</div>
-        <p>Liste des chansons de Noël.</p>
-        <br><br>
-      </section>
-      <section>
-        <p>
-          <counter-element value="${this._value}" clicks="${this._clicks}"
-              @counter-incremented="${this._counterIncremented}"
-              @counter-decremented="${this._counterDecremented}">
-          </counter-element>
-        </p>
+        <h3>Chansons</h3>
+        <song-products></song-products>
+ 
+
+        <div>${this._error}</div> 
       </section>
     `;
   }
 
   static get properties() { return {
     // This is the data from the store.
-    _clicks: { type: Number },
-    _value: { type: Number },
+    _error: { type: String }
   }}
 
-  _counterIncremented() {
-    store.dispatch(increment());
+  _playSong() {
+    store.dispatch(playSong());
   }
 
-  _counterDecremented() {
-    store.dispatch(decrement());
-  }
 
   // This is called every time something is updated in the store.
   stateChanged(state) {
-    this._clicks = state.counter.clicks;
-    this._value = state.counter.value;
   }
 }
 
