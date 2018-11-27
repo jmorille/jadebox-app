@@ -35,10 +35,9 @@ const loadPage = (page) => (dispatch) => {
       });
       break;
     case 'view2':
-      import('../components/my-view2.js');
-      break;
     case 'view3':
-      import('../components/my-view3.js');
+    case 'song':
+      import(`../components/my-${page}.js`);
       break;
     default:
       page = 'view404';

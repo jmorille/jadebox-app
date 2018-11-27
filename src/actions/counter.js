@@ -7,18 +7,17 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
-
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 
 export const increment = () => {
-  return {
-    type: INCREMENT
-  };
+    return {
+        type: INCREMENT
+    };
 };
 
 export const decrement = () => {
-  return {
-    type: DECREMENT
-  };
+    return {
+        type: DECREMENT
+    };
 };

@@ -3,3 +3,9 @@ node_modules/
 test/integration/screenshots-current/
 _site/
 .DS_Store
+
+
+# IDE
+.idea
+*.iml
+yarn.lock
