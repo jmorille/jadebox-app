@@ -28,7 +28,7 @@ class MySong extends connect(store)(PageViewElement) {
       ${SharedStyles}
       <section>
         <h3>Chansons</h3>
-        <audio controls autoplay id="player" preload="metadata" style=" width:600px;">
+        <audio  controls autoplay id="player" preload="metadata" style=" width:600px;">
 	       <source src="${this._playing.url}" type="audio/mpeg">
 	       Your browser does not support the audio element.
         </audio>
@@ -42,8 +42,6 @@ class MySong extends connect(store)(PageViewElement) {
 
     constructor(){
         super();
-        // Initialize property here.
-        this._playing= "/data/noelEstCommeUnRythmeJazz.mp3";
     }
 
   static get properties() { return {
