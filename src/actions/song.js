@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 
-import fetch from 'node-fetch';
+//import fetch from 'node-fetch';
 
 
 
