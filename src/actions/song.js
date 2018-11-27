@@ -1,4 +1,4 @@
-import { ThunkAction } from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';
 
 //import fetch from 'node-fetch';
 
@@ -6,20 +6,25 @@ import { ThunkAction } from 'redux-thunk';
 
 export const GET_SONGS = 'GET_SONGS';
 export const REQUEST_SONGS = 'REQUEST_SONGS';
+export const ERROR_SONGS = 'ERROR_SONGS';
 
 export const PLAY_SONG = 'PLAY_SONG';
 
 export const getAllSongs = () => (dispatch) => {
   dispatch(requestAllSongs());
-  fetch('/data/songs.json')
+  return fetch('/data/songs.json')
       .then(res => res.json() )
       .then(data => receiveAllSongs(data) )
-      .catch(err => failAllSongs(err))
-    return {
-        type: GET_SONGS
-    };
+      .catch(err => failAllSongs(err));
 };
 
+
+export const failAllSongs = (err) => {
+    return {
+        type: ERROR_SONGS,
+        error: err
+    };
+};
 
 export const requestAllSongs = () => {
     return {

@@ -8,6 +8,7 @@
   "repository": "Polymer/pwa-starter-kit",
   "scripts": {
     "start": "polymer serve",
+    "sync": "browser-sync start --proxy 127.0.0.1:8081 --files src/**/*.js",
     "build": "npm run build:prpl-server && npm run build:static",
     "build:prpl-server": "polymer build --auto-base-path && gulp prpl-server",
     "build:static": "polymer build",
